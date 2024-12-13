@@ -9,10 +9,9 @@ const Header = () => {
   };
 
   return (
-    <header className="site-header bg-dark fixed top-0 left-0 right-0 z-999">
+    <header className="site-header bg-dark fixed top-0 left-0 bg-black right-0 z-999" style={{ zIndex: 999 }} >
       <div className="container mx-auto">
-        <div className="flex justify-between items-center px-4 lg:px-12 h-20 sm:h-20 md:h-auto w-full bg-dark z-50 transition-all duration-200">
-          <a href="#" className="site-brand-wrapper">
+        <div className="flex justify-between items-center px-4 lg:px-12 h-20 sm:h-20 md:h-auto w-full bg-dark z-500 transition-all duration-200">
             <img
               alt="Brand logo"
               loading="lazy"
@@ -23,7 +22,6 @@ const Header = () => {
               src={logo}
               style={{ color: "transparent" }}
             />
-          </a>
 
           <nav>
             <button

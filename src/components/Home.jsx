@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import backgrp from "../assets/back.png";
+
 const OverlappingSlides = () => {
   const [scrollY, setScrollY] = useState(0);
 
@@ -8,28 +9,29 @@ const OverlappingSlides = () => {
   };
 
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <div className="relative overflow-hidden">
-      {/* First Slide (Fixed position) */}
+    <div>
+    <div className="relative overflow-hidden" style={{ height: "200vh"}}>
+      {/* First Slide */}
       <div
-        className="sticky top-0 left-0 h-screen w-full b-50%"
+        className="sticky top-20 h-screen w-full"
         style={{
-          backgroundImage:
-            `url(${backgrp})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'left center', // Ensure the image is positioned on the left
-          zIndex: 10,
-          transition: 'opacity 0.5s ease-in-out',
+          // backgroundImage: `url(${backgrp})`,
+          // backgroundSize: "cover",
+          // backgroundPosition: "left",
+          zIndex: 1,
         }}
       >
         <section className="h-full flex items-center justify-between px-8 text-white">
-          {/* Left Side Content (Background image will occupy this part) */}
+          {/* Left Side Content */}
           <div className="flex-1">
-            {/* Empty or optional content, background image will be here */}
+            {/* Background image occupies this space */}
+            <img src={backgrp} alt="background" />
+
           </div>
 
           {/* Right Side Content */}
@@ -43,22 +45,24 @@ const OverlappingSlides = () => {
         </section>
       </div>
 
-      {/* Second Slide (absolute, overlapping first slide class="h-screen bg-tokk-thumbnails1 bg-50% lg:bg-auto  animation-fadeup") */}
+      {/* Second Slide */}
       <div
-        className="absolute top-0 left-0 h-screen w-full bg-50%"
+        className="absolute top-0 left-0 h-screen w-full"
         style={{
-          backgroundImage:
-            'url("https://tokk-ai-dev.bitcotapps.com/_next/static/media/tokk-thumbnails2.2cd67476.png")',
-          backgroundSize: 'cover',
-          backgroundPosition: 'left center', // Ensure the image is positioned on the left
-          zIndex: 20,
-          transition: 'opacity 0.5s ease-in-out'
+          // backgroundImage: `url(${backgrp})`,
+          // backgroundSize: "cover",
+          // backgroundPosition: "left center",
+          zIndex: 2,
+          transform: `translateY(${Math.min(100, scrollY / 5)}%)`, // Overlap effect
+          opacity: Math.min(1, scrollY / 300), // Fade in as user scrolls
+          transition: "opacity 0.3s ease, transform 0.3s ease",
         }}
       >
         <section className="h-full flex items-center justify-between px-8 text-white">
-          {/* Left Side Content (Background image will occupy this part) */}
+          {/* Left Side Content */}
           <div className="flex-1">
-            {/* Empty or optional content, background image will be here */}
+            {/* Background image occupies this space */}
+            <img src={backgrp} alt="background" />
           </div>
 
           {/* Right Side Content */}
@@ -72,11 +76,8 @@ const OverlappingSlides = () => {
           </div>
         </section>
       </div>
-
-      {/* Spacer Divs for Scrollability */}
-      <div className="h-screen"></div>
-      <div className="h-screen"></div>
     </div>
+  </div>
   );
 };
 
