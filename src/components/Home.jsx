@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import backgrp from "../assets/back.png";
 const OverlappingSlides = () => {
   const [scrollY, setScrollY] = useState(0);
 
@@ -16,10 +16,10 @@ const OverlappingSlides = () => {
     <div className="relative overflow-hidden">
       {/* First Slide (Fixed position) */}
       <div
-        className="fixed top-0 left-0 h-screen w-full b-50%"
+        className="sticky top-0 left-0 h-screen w-full b-50%"
         style={{
           backgroundImage:
-            'url("https://tokk-ai-dev.bitcotapps.com/_next/static/media/tokk-thumbnails1.f60f0350.png")',
+            `url(${backgrp})`,
           backgroundSize: 'cover',
           backgroundPosition: 'left center', // Ensure the image is positioned on the left
           zIndex: 10,
